@@ -1,5 +1,6 @@
 <template>
-  <Greeting></Greeting>
+  <p>Hey!</p>
+  <Greeting> </Greeting>
 </template>
 
 <script>
@@ -11,3 +12,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
