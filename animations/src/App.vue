@@ -7,10 +7,15 @@
   <!-- <transition name="zoom" type="animation" appear>
     <h2 v-if="flag">Hello</h2>
   </transition> -->
-  <transition>
-    @before-enter = "beforeEnter" @enter = "enter" @after-enter = "afterEnter"
-    @before-leave = "beforeLeave" @leave = "leave" @after-leave= "afterLeave"
-
+  <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    :css="false"
+  >
     <h2 v-if="flag">Hey</h2>
   </transition>
 </template>
@@ -25,12 +30,22 @@ export default {
   methods: {
     beforeEnter(el) {},
     enter(el, done) {
-      done();
+      const animation = el.animate([{ transform: "scale3d(0,0,0)" }, {}], {
+        duration: 1000,
+      });
+      animation.onfinish = () => {
+        done();
+      };
     },
     afterEnter(el) {},
     beforeLeave(el) {},
     leave(el, done) {
-      done();
+      const animation = el.animate([{}, { transform: "scale3d(0,0,0)" }], {
+        duration: 1000,
+      });
+      animation.onfinish = () => {
+        done();
+      };
     },
     afterLeave(el) {},
   },
